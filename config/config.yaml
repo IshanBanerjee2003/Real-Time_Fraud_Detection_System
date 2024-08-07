@@ -1,0 +1,16 @@
+data:
+  raw_data_path: 'data/raw_data.csv'
+  processed_data_path: 'data/processed_data.csv'
+  processed_data_with_features_path: 'data/processed_data_with_features.csv'
+  predictions_path: 'data/predictions.csv'
+
+model:
+  model_path: 'src/fraud_detection_model.pkl'
+  n_estimators: 100  # Number of trees in the Random Forest
+
+preprocessing:
+  fillna_method: 'ffill'  # Method to fill missing values
+
+feature_engineering:
+  enable_amount_squared: true  # Whether to create an amount squared feature
+  enable_balance_ratio: true  # Whether to create a balance ratio feature
