@@ -1,0 +1,23 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+
+def preprocess_data(input_path, output_path):
+    # Load raw data
+    data = pd.read_csv(input_path)
+
+    # Handle missing values
+    data.fillna(method='ffill', inplace=True)
+
+    # Encode categorical variables
+    le = LabelEncoder()
+    data['category'] = le.fit_transform(data['category'])
+
+    # Normalize numerical features
+    scaler = StandardScaler()
+    data[['amount', 'balance']] = scaler.fit_transform(data[['amount', 'balance']])
+
+    # Save processed data
+    data.to_csv(output_path, index=False)
+
+if __name__ == '__main__':
+    preprocess_data('data/raw_data.csv', 'data/processed_data.csv')
